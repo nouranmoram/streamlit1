@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import re
@@ -6,7 +5,7 @@ import plotly.express as px
 
 # Load your data
 def load_data():
-    df = pd.read_csv(r"C:\Users\Nouran\Desktop\\Egyptian Doctors Data.csv")
+    df = pd.read_csv('C:\\Users\\Nouran\\Desktop\\Visualization MSBA 325\\assignment 1') 
     return df
 
 df = load_data()
