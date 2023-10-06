@@ -5,7 +5,7 @@ import plotly.express as px
 
 # Load your data
 def load_data():
-    df = pd.read_csv('C:\\Users\\Nouran\\Desktop\\Visualization MSBA 325\\assignment 1') 
+    df = pd.read_csv('Egyptian_Doctors_Data.csv') 
     return df
 
 df = load_data()
