@@ -42,7 +42,7 @@ if governorates:
 
 # Display the filtered raw data
 st.subheader("Filtered Raw Data")
-st.write(df)
+st.dataframe(df)  # Display the filtered DataFrame as is
 
 
 
