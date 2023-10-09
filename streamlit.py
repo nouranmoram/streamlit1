@@ -14,28 +14,19 @@ if 'rate_count' in df.columns:
     df['number_of_visitors'] = df['rate_count'].astype(str)
 else:
     st.error("The 'rate_count' column does not exist in the DataFrame.")
-
-# Page Title
-st.title("Egyptian Doctors Data Analysis")
-
+#########################################
 # Display the raw data
 st.subheader("Raw Data")
-st.write(df)
+st.write("This is the whole data with all the details for the Egyptian doctors covering various locations.")
+st.write(df)  # Assuming 'df' is your DataFrame
 
-# Define a function to extract numbers from a string
-def extract_numbers(text):
-    numbers = re.findall(r'\d+', str(text))
-    if numbers:
-        return int(numbers[0])
-    else:
-        return 0  # Return 0 if no numbers are found
-
-# Apply the extract_numbers function to the 'waiting_time' column
-df['waiting_time'] = df['waiting_time'].apply(extract_numbers)
-
-# Apply the extract_numbers function to the 'fees' column
-df['fees'] = df['fees'].apply(extract_numbers)
-
+# Add a filter
+location_filter = st.multiselect("Filter by Location", df["Location"].unique())
+if location_filter:
+    filtered_df = df[df["Location"].isin(location_filter)]
+    st.subheader("Filtered Data")
+    st.write(filtered_df)
+####################################################
 # Group the data by 'specialization' and calculate the total count of each specialization
 specialization_counts = df['specialization'].value_counts().reset_index()
 specialization_counts.columns = ['specialization', 'Total Count']
