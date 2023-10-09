@@ -15,22 +15,17 @@ if 'rate_count' in df.columns:
 else:
     st.error("The 'rate_count' column does not exist in the DataFrame.")
 #########################################
+
 # Page Title
 st.title("Egyptian Doctors Data Analysis")
-
-# # Small paragraph
-# st.write("This is the whole data with all the details for the Egyptian doctors covering various locations.")
-
+# Small paragraph
+st.write("This is the whole data with all the details for the Egyptian doctors covering various locations.")
 # Display the raw data
-st.subheader("This is the whole data with all the details for the Egyptian doctors covering various locations.")
+st.subheader("Raw Data")
 st.write(df)
 
-# Add a filter
-location_filter = st.multiselect("Filter by Location", df["Location"].unique())
-if location_filter:
-    filtered_df = df[df["Location"].isin(location_filter)]
-    st.subheader("Filtered Data")
-    st.write(filtered_df)
+
+
 ####################################################
 # Group the data by 'specialization' and calculate the total count of each specialization
 specialization_counts = df['specialization'].value_counts().reset_index()
