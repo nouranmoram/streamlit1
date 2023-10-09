@@ -25,6 +25,10 @@ st.write(df)
 # Filters for raw data
 st.sidebar.subheader("Data Filters")
 
+# Filter by Age
+age_range = st.sidebar.slider("Select Age Range", int(df['age'].min()), int(df['age'].max()), (25, 60))
+df = df[(df['age'] >= age_range[0]) & (df['age'] <= age_range[1])]
+
 # Filter by Specialization
 specializations = st.sidebar.multiselect("Select Specializations", df['specialization'].unique())
 if specializations:
@@ -42,8 +46,7 @@ if governorates:
 
 # Display the filtered raw data
 st.subheader("Filtered Raw Data")
-st.dataframe(df)  # Display the filtered DataFrame as is
-
+st.write(df)
 
 
 #####################################
