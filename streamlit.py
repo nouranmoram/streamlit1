@@ -15,6 +15,8 @@ if 'rate_count' in df.columns:
 else:
     st.error("The 'rate_count' column does not exist in the DataFrame.")
 #########################################
+# Small paragraph
+st.write("This is the whole data with all the details for the Egyptian doctors covering various locations.")
 # Display the raw data
 st.subheader("Raw Data")
 st.write("This is the whole data with all the details for the Egyptian doctors covering various locations.")
