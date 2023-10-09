@@ -15,12 +15,14 @@ if 'rate_count' in df.columns:
 else:
     st.error("The 'rate_count' column does not exist in the DataFrame.")
 #########################################
+# Display the raw data
+
 # Small paragraph
 st.write("This is the whole data with all the details for the Egyptian doctors covering various locations.")
+
 # Display the raw data
 st.subheader("Raw Data")
-st.write("This is the whole data with all the details for the Egyptian doctors covering various locations.")
-st.write(df)  # Assuming 'df' is your DataFrame
+st.write(df)
 
 # Add a filter
 location_filter = st.multiselect("Filter by Location", df["Location"].unique())
