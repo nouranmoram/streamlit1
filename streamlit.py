@@ -18,10 +18,10 @@ else:
 # Display the raw data
 
 # Small paragraph
-st.write("This is the whole data with all the details for the Egyptian doctors covering various locations.")
+# st.write("This is the whole data with all the details for the Egyptian doctors covering various locations.")
 
 # Display the raw data
-st.subheader("Raw Data")
+st.subheader("This is the whole data with all the details for the Egyptian doctors covering various locations")
 st.write(df)
 
 # Add a filter
