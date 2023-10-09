@@ -21,35 +21,7 @@ st.title("Egyptian Doctors Data Analysis")
 # Display the raw data
 st.subheader("Raw Data")
 st.write(df)
-########################################
-# Filters for raw data
-st.sidebar.subheader("Data Filters")
 
-# Filter by Age
-age_range = st.sidebar.slider("Select Age Range", int(df['age'].min()), int(df['age'].max()), (25, 60))
-df = df[(df['age'] >= age_range[0]) & (df['age'] <= age_range[1])]
-
-# Filter by Specialization
-specializations = st.sidebar.multiselect("Select Specializations", df['specialization'].unique())
-if specializations:
-    df = df[df['specialization'].isin(specializations)]
-
-# Filter by Waiting Time Category
-waiting_time_categories = st.sidebar.multiselect("Select Waiting Time Categories", df['waiting_time_category'].unique())
-if waiting_time_categories:
-    df = df[df['waiting_time_category'].isin(waiting_time_categories)]
-
-# Filter by Governorate
-governorates = st.sidebar.multiselect("Select Governorates", df['clinic_location'].unique())
-if governorates:
-    df = df[df['clinic_location'].isin(governorates)]
-
-# Display the filtered raw data
-st.subheader("Filtered Raw Data")
-st.write(df)
-
-
-#####################################
 # Define a function to extract numbers from a string
 def extract_numbers(text):
     numbers = re.findall(r'\d+', str(text))
