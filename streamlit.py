@@ -173,4 +173,4 @@ fig8 = px.treemap(specialization_waiting_time_counts, path=['specialization', 'w
 # Display the plot
 st.plotly_chart(fig8)
 
-st.write("From the above tree map, we can notice that the majority of waiting time is short between ")
+st.write("The treemap above reveals that the number of long waiting times is quite minimal when the threshold for long waiting time is set at 30 minutes, with the majority falling into the medium and short categories. ")
