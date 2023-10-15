@@ -44,10 +44,13 @@ df1 = df.sort_values(by='fees', ascending=False)
 
 # Get the top 10 specializations with the highest fees
 top_10_specializations = df1.head(10)
+colors = ['blue', 'green', 'red', 'purple', 'orange', 'pink', 'cyan', 'magenta', 'brown', 'grey']
 
 # Create a bar plot to visualize the relationship between specialization and fees
 fig3 = px.bar(top_10_specializations, x='specialization', y='fees',
-              title='Top 10 Specializations with Highest Fees (Highest to Lowest)')
+              title='Top 10 Specializations with Highest Fees (Highest to Lowest)',
+               color='specialization', color_discrete_sequence=colors
+             )
 
 fig3.update_xaxes(title_text='Specialization')
 fig3.update_yaxes(title_text='Average Fees')
