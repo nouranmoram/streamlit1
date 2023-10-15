@@ -40,7 +40,7 @@ fig2 = px.scatter(filtered_df, x='specialization', y='fees', title='Specializati
 # Display the plot using st.plotly_chart
 st.plotly_chart(fig2)
 
-df1 = df.sort_values(by='fees', ascending=False)
+df1 = df.sort_values(by='fees', ascending=True)
 
 # Get the top 10 specializations with the highest fees
 top_10_specializations = df1.head(9)
