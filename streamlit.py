@@ -48,12 +48,13 @@ colors = ['blue', 'green', 'red', 'purple', 'orange', 'pink', 'cyan', 'magenta',
 
 # Create a bar plot to visualize the relationship between specialization and fees
 fig3 = px.bar(top_10_specializations, x='specialization', y='fees',
-              title='Top 10 Specializations with Highest Fees (Highest to Lowest)',
+              title='Top 10 Specializations with Highest Fees',
                color='specialization', color_discrete_sequence=colors
              )
 
 fig3.update_xaxes(title_text='Specialization')
 fig3.update_yaxes(title_text='Average Fees')
+st.write("Neurosurgen has the most expensive fees following Physiotherapist.")
 
 # Display the plot using st.plotly_chart
 st.plotly_chart(fig3)
