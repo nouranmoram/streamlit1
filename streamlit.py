@@ -28,30 +28,6 @@ df['column_name'] = pd.to_numeric(df['column_name'], errors='coerce')
 
 
 ####################################################
-# Group the data by 'specialization' and calculate the total count of each specialization
-specialization_counts = df['specialization'].value_counts().reset_index()
-specialization_counts.columns = ['specialization', 'Total Count']
-
-# Sort the specializations by total count in descending order
-sorted_specializations = specialization_counts.sort_values(by='Total Count', ascending=False)
-
-# Display the sorted specializations
-st.subheader("Total Count of Doctors by Specialization")
-st.write(sorted_specializations)
-
-# Create a bar chart to visualize the total count of each specialization
-fig = px.bar(sorted_specializations, x='specialization', y='Total Count',
-             title='Total Count of Doctors by Specialization')
-
-# Customize the chart (optional)
-fig.update_xaxes(title_text='Specialization')
-fig.update_yaxes(title_text='Total Count')
-
-# Rotate x-axis labels for better readability (optional)
-fig.update_layout(xaxis_tickangle=-45)
-
-# Display the plot
-st.plotly_chart(fig)
 
 #####
 
