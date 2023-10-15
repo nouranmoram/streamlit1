@@ -31,10 +31,18 @@ st.write(df)
 
 #####
 
+selected_specializations = st.multiselect('Select Specializations', df['specialization'].unique())
+# Filter the DataFrame based on selected specializations
+filtered_df = df[df['specialization'].isin(selected_specializations)]
+
+# Create the scatter plot with the filtered data
+fig2 = px.scatter(filtered_df, x='specialization', y='fees', title='Specialization vs. Appointment Fees')
+# Display the plot using st.plotly_chart
+st.plotly_chart(fig2)
 
 # Create a scatter plot for specialization vs. fees
-fig2 = px.scatter(df, x='specialization', y='fees', title='Specialization vs. Appointment Fees')
-st.plotly_chart(fig2)
+# fig2 = px.scatter(df, x='specialization', y='fees', title='Specialization vs. Appointment Fees')
+# st.plotly_chart(fig2)
 
 # Group the data by 'specialization' and calculate the average fees for each specialization
 specialization_fees = df.groupby('specialization')['fees'].mean().reset_index()
