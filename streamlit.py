@@ -53,9 +53,12 @@ sorted_specializations_fees = specialization_fees.sort_values(by='fees', ascendi
 # Select the top 10 specializations with the highest fees (highest to lowest)
 top_10_specializations_fees = sorted_specializations_fees.head(10)
 
-# Create a scatter plot to visualize the relationship between specialization and fees
-fig3 = px.scatter(top_10_specializations_fees, x='specialization', y='fees',
-                  title='Top 10 Specializations with Highest Fees (Highest to Lowest)')
+# Create a bar plot to visualize the relationship between specialization and fees
+fig3 = px.bar(top_10_specializations_fees, x='specialization', y='fees',
+              title='Top 10 Specializations with Highest Fees (Highest to Lowest)')
+
+# Display the plot using st.plotly_chart
+st.plotly_chart(fig3)
 
 # Customize the chart (optional)
 fig3.update_xaxes(title_text='Specialization')
@@ -109,8 +112,6 @@ top_10_doctors = doctor_visitors.nlargest(10, 'number_of_visitors')
 print(top_10_doctors)
 
 
-
-
 # Group the data by 'specialization' and calculate the total number of visitors for each specialization
 specialization_visitors = df.groupby('specialization')['number_of_visitors'].sum().reset_index()
 
@@ -151,16 +152,19 @@ fig7 = px.treemap(top_10_specializations_visitors, path=['specialization'], valu
 st.plotly_chart(fig7)
 
 # Define waiting time categories
-def categorize_waiting_time(waiting_time):
-    if waiting_time <= 15:
+def categorize_waiting_time(waiting_time, threshold):
+    if waiting_time <= threshold:
         return 'Short'
-    elif 15 < waiting_time <= 30:
+    elif threshold < waiting_time <= 2 * threshold:
         return 'Medium'
     else:
         return 'Long'
 
-# Categorize waiting times and create a new 'waiting_time_category' column
-df['waiting_time_category'] = df['waiting_time'].apply(categorize_waiting_time)
+# Create a Streamlit slider to adjust the waiting time threshold
+threshold = st.slider("Select Waiting Time Threshold", min_value=10, max_value=60, value=30, step=5)
+
+# Categorize waiting times based on the selected threshold and create a new 'waiting_time_category' column
+df['waiting_time_category'] = df['waiting_time'].apply(categorize_waiting_time, threshold=threshold)
 
 # Group the data by 'specialization' and 'waiting_time_category' and calculate the count
 specialization_waiting_time_counts = df.groupby(['specialization', 'waiting_time_category']).size().reset_index(name='count')
