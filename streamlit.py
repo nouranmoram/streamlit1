@@ -40,10 +40,18 @@ fig2 = px.scatter(filtered_df, x='specialization', y='fees', title='Specializati
 # Display the plot using st.plotly_chart
 st.plotly_chart(fig2)
 
-# Create a scatter plot for specialization vs. fees
-# fig2 = px.scatter(df, x='specialization', y='fees', title='Specialization vs. Appointment Fees')
-# st.plotly_chart(fig2)
+# Sort the DataFrame by 'fees' column in descending order
+df = df.sort_values(by='fees', ascending=False)
 
+# Get the top 10 specializations with the highest fees
+top_10_specializations = df.head(10)
+fig3 = px.bar(top_10_specializations_fees, x='specialization', y='fees',
+              title='Top 10 Specializations with Highest Fees (Highest to Lowest)')
+fig3.update_xaxes(title_text='Specialization')
+fig3.update_yaxes(title_text='Average Fees')
+
+# Display the plot using st.plotly_chart
+st.plotly_chart(fig3)
 # Group the data by 'specialization' and calculate the average fees for each specialization
 # specialization_fees = df.groupby('specialization')['fees'].mean().reset_index()
 
@@ -130,21 +138,7 @@ fig6.update_layout(xaxis_tickangle=-45)
 st.plotly_chart(fig6)
 
 st.write("The most visited specializations are dentists, followed by internists, with the highest number of visitors.")
-# # Group the data by 'specialization' and calculate the total number of visitors for each specialization
-# specialization_visitors = df.groupby('specialization')['number_of_visitors'].sum().reset_index()
 
-# # Sort the specializations by total number of visitors in descending order
-# sorted_specializations_visitors = specialization_visitors.sort_values(by='number_of_visitors', ascending=False)
-
-# # Select the top 10 specializations with the highest number of visitors
-# top_10_specializations_visitors = sorted_specializations_visitors.head(10)
-
-# # Create a treemap for the top 10 specializations with the highest number of visitors
-# fig7 = px.treemap(top_10_specializations_visitors, path=['specialization'], values='number_of_visitors',
-#                   title='Top 10 Specializations with Highest Number of Visitors (Treemap)')
-
-# # Display the plot
-# st.plotly_chart(fig7)
 
 # Extract waiting time in minutes
 df['waiting_time'] = df['waiting_time'].str.extract(r'(\d+)').astype(float)
