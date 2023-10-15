@@ -145,7 +145,20 @@ fig7 = px.treemap(top_10_specializations_visitors, path=['specialization'], valu
 # Display the plot
 st.plotly_chart(fig7)
 
-# Define waiting time categories
+# Define a function to extract waiting time in minutes
+def extract_waiting_time(waiting_time_string):
+    match = re.search(r'\d+', waiting_time_string)
+    if match:
+        return int(match.group())
+    return 0
+
+# Create a Streamlit slider to adjust the waiting time threshold
+threshold = st.slider("Select Waiting Time Threshold", min_value=10, max_value=60, value=30, step=5)
+
+# Apply the extract_waiting_time function to the waiting_time column
+df['waiting_time'] = df['waiting_time'].apply(extract_waiting_time)
+
+# Categorize waiting times based on the selected threshold and create a new 'waiting_time_category' column
 def categorize_waiting_time(waiting_time, threshold):
     if waiting_time <= threshold:
         return 'Short'
@@ -154,10 +167,6 @@ def categorize_waiting_time(waiting_time, threshold):
     else:
         return 'Long'
 
-# Create a Streamlit slider to adjust the waiting time threshold
-threshold = st.slider("Select Waiting Time Threshold", min_value=10, max_value=60, value=30, step=5)
-
-# Categorize waiting times based on the selected threshold and create a new 'waiting_time_category' column
 df['waiting_time_category'] = df['waiting_time'].apply(categorize_waiting_time, threshold=threshold)
 
 # Group the data by 'specialization' and 'waiting_time_category' and calculate the count
