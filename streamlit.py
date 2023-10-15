@@ -56,18 +56,12 @@ top_10_specializations_fees = sorted_specializations_fees.head(10)
 # Create a bar plot to visualize the relationship between specialization and fees
 fig3 = px.bar(top_10_specializations_fees, x='specialization', y='fees',
               title='Top 10 Specializations with Highest Fees (Highest to Lowest)')
-
-# Display the plot using st.plotly_chart
-st.plotly_chart(fig3)
-
-# Customize the chart (optional)
 fig3.update_xaxes(title_text='Specialization')
 fig3.update_yaxes(title_text='Average Fees')
 
 # Rotate x-axis labels for better readability (optional)
 fig3.update_layout(xaxis_tickangle=-45)
-
-# Display the plot
+# Display the plot using st.plotly_chart
 st.plotly_chart(fig3)
 
 # Group the data by 'clinic_location' and count the number of doctors in each governorate
