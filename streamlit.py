@@ -45,7 +45,7 @@ df = df.sort_values(by='fees', ascending=False)
 
 # Get the top 10 specializations with the highest fees
 top_10_specializations = df.head(10)
-fig3 = px.bar(top_10_specializations_fees, x='specialization', y='fees',
+fig3 = px.bar(top_10_specializations, x='specialization', y='fees',
               title='Top 10 Specializations with Highest Fees (Highest to Lowest)')
 fig3.update_xaxes(title_text='Specialization')
 fig3.update_yaxes(title_text='Average Fees')
