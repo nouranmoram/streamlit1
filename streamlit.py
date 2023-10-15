@@ -24,7 +24,7 @@ st.write("This is the whole data with all the details for the Egyptian doctors c
 st.subheader("Raw Data")
 st.write(df)
 
-df['column_name'] = pd.to_numeric(df['column_name'], errors='coerce')
+# df['column_name'] = pd.to_numeric(df['column_name'], errors='coerce')
 
 
 ####################################################
