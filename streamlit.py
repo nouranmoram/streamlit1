@@ -40,37 +40,20 @@ fig2 = px.scatter(filtered_df, x='specialization', y='fees', title='Specializati
 # Display the plot using st.plotly_chart
 st.plotly_chart(fig2)
 
-# Sort the DataFrame by 'fees' column in descending order
-df = df.sort_values(by='fees', ascending=True)
+df1 = df.sort_values(by='fees', ascending=False)
 
 # Get the top 10 specializations with the highest fees
-top_10_specializations = df.head(10)
+top_10_specializations = df1.head(10)
+
+# Create a bar plot to visualize the relationship between specialization and fees
 fig3 = px.bar(top_10_specializations, x='specialization', y='fees',
               title='Top 10 Specializations with Highest Fees (Highest to Lowest)')
+
 fig3.update_xaxes(title_text='Specialization')
 fig3.update_yaxes(title_text='Average Fees')
 
 # Display the plot using st.plotly_chart
 st.plotly_chart(fig3)
-# Group the data by 'specialization' and calculate the average fees for each specialization
-# specialization_fees = df.groupby('specialization')['fees'].mean().reset_index()
-
-# # Sort the specializations by average fees in descending order
-# sorted_specializations_fees = specialization_fees.sort_values(by='fees', ascending=False)
-
-# # Select the top 10 specializations with the highest fees (highest to lowest)
-# top_10_specializations_fees = sorted_specializations_fees.head(10)
-
-# # Create a bar plot to visualize the relationship between specialization and fees
-# fig3 = px.bar(top_10_specializations_fees, x='specialization', y='fees',
-#               title='Top 10 Specializations with Highest Fees (Highest to Lowest)')
-# fig3.update_xaxes(title_text='Specialization')
-# fig3.update_yaxes(title_text='Average Fees')
-
-# # Rotate x-axis labels for better readability (optional)
-# fig3.update_layout(xaxis_tickangle=-45)
-# # Display the plot using st.plotly_chart
-# st.plotly_chart(fig3)
 
 # Group the data by 'clinic_location' and count the number of doctors in each governorate
 governorate_counts = df['clinic_location'].value_counts().reset_index()
