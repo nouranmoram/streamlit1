@@ -81,6 +81,7 @@ fig4 = px.pie(top_5_governorates, names='Governorate', values='Doctor Count', ti
 # Display the plot
 st.plotly_chart(fig4)
 
+st.write("This pie chart shows the top 5 governance with most doctors. 6th October and Nasr city have the highest number of doctors.")
 
 
 import re
@@ -105,7 +106,6 @@ top_10_doctors = doctor_visitors.nlargest(10, 'number_of_visitors')
 # Display the result
 print(top_10_doctors)
 
-
 # Group the data by 'specialization' and calculate the total number of visitors for each specialization
 specialization_visitors = df.groupby('specialization')['number_of_visitors'].sum().reset_index()
 
@@ -129,27 +129,28 @@ fig6.update_layout(xaxis_tickangle=-45)
 # Display the plot
 st.plotly_chart(fig6)
 
-# Group the data by 'specialization' and calculate the total number of visitors for each specialization
-specialization_visitors = df.groupby('specialization')['number_of_visitors'].sum().reset_index()
+st.write("The most visited specializations are dentists, followed by internists, with the highest number of visitors.")
+# # Group the data by 'specialization' and calculate the total number of visitors for each specialization
+# specialization_visitors = df.groupby('specialization')['number_of_visitors'].sum().reset_index()
 
-# Sort the specializations by total number of visitors in descending order
-sorted_specializations_visitors = specialization_visitors.sort_values(by='number_of_visitors', ascending=False)
+# # Sort the specializations by total number of visitors in descending order
+# sorted_specializations_visitors = specialization_visitors.sort_values(by='number_of_visitors', ascending=False)
 
-# Select the top 10 specializations with the highest number of visitors
-top_10_specializations_visitors = sorted_specializations_visitors.head(10)
+# # Select the top 10 specializations with the highest number of visitors
+# top_10_specializations_visitors = sorted_specializations_visitors.head(10)
 
-# Create a treemap for the top 10 specializations with the highest number of visitors
-fig7 = px.treemap(top_10_specializations_visitors, path=['specialization'], values='number_of_visitors',
-                  title='Top 10 Specializations with Highest Number of Visitors (Treemap)')
+# # Create a treemap for the top 10 specializations with the highest number of visitors
+# fig7 = px.treemap(top_10_specializations_visitors, path=['specialization'], values='number_of_visitors',
+#                   title='Top 10 Specializations with Highest Number of Visitors (Treemap)')
 
-# Display the plot
-st.plotly_chart(fig7)
+# # Display the plot
+# st.plotly_chart(fig7)
 
 # Extract waiting time in minutes
 df['waiting_time'] = df['waiting_time'].str.extract(r'(\d+)').astype(float)
 
 # Create a Streamlit slider to adjust the waiting time threshold
-threshold = st.slider("Select Waiting Time Threshold", min_value=10, max_value=60, value=30, step=5)
+threshold = st.slider("Select Waiting Time Threshold", min_value=10, max_value=30, value=30, step=5)
 
 # Categorize waiting times based on the selected threshold and create a new 'waiting_time_category' column
 def categorize_waiting_time(waiting_time, threshold):
@@ -171,3 +172,5 @@ fig8 = px.treemap(specialization_waiting_time_counts, path=['specialization', 'w
 
 # Display the plot
 st.plotly_chart(fig8)
+
+st.write("From the above tree map, we can notice that the majority of waiting time is short between ")
