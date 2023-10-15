@@ -54,10 +54,10 @@ fig3 = px.bar(top_10_specializations, x='specialization', y='fees',
 
 fig3.update_xaxes(title_text='Specialization')
 fig3.update_yaxes(title_text='Average Fees')
-st.write("Neurosurgen has the most expensive fees following Physiotherapist.")
 
 # Display the plot using st.plotly_chart
 st.plotly_chart(fig3)
+st.write("Neurosurgen has the most expensive fees following Physiotherapist.")
 
 # Group the data by 'clinic_location' and count the number of doctors in each governorate
 governorate_counts = df['clinic_location'].value_counts().reset_index()
